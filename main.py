@@ -13,7 +13,7 @@ def readCSV():
         for row in csv_reader:
             line_count +=1
             rows.append(row)        
-        print('Processado {} linhas.' .format(line_count))
+        #print('Processado {} linhas.' .format(line_count))
         
     del rows[0]
     return rows
@@ -37,7 +37,7 @@ def q_1():
         nationalities_dif.append(i[14])
         
     print("Existem {} nacionalidades diferentes. " .format(len(set(nationalities_dif))))
-    print(sorted(set(nationalities_dif)))
+    #print(sorted(set(nationalities_dif)))
     
     return len(set(nationalities_dif))
 
@@ -49,8 +49,8 @@ def q_2():
         clubs_dif.append(i[3])
 
     print("Existem {} clubes diferentes. " .format(len(set(clubs_dif))))
-    print(sorted(set(clubs_dif)))
-    return len(clubs_dif)
+    #print(sorted(set(clubs_dif)))
+    return len(set(clubs_dif))
 
 # **Q3.** Liste o nome completo dos 20 primeiros jogadores de acordo com a coluna `full_name`.
 def q_3():
@@ -68,6 +68,8 @@ def q_3():
     for i in twenty_players:
         print("{} : {}" .format(count, i))
         count+=1
+
+    print("")    
     return twenty_players
    
 
@@ -80,12 +82,15 @@ def q_4():
     
     ten_eur_wages = sorted(eur_wages, reverse=True)
     del(ten_eur_wages[10:len(ten_eur_wages)])    
+    ten_eur_wages = sorted(ten_eur_wages, reverse=True)
+    #print(ten_eur_wages)
     players = []
-    for i in data:
-        if float(i[17]) in ten_eur_wages:
-           print("O {} é um jogadores que ganham mais dinheiro da lista com {} euros . " .format(i[2],i[17] )) 
-           players.append(str(i[2]))
-    
+    for j in range(0,10):
+        for i in data:
+            if float(i[17]) == ten_eur_wages[j]:
+                print("O {} é um jogadores que ganham mais dinheiro da lista com {} euros . " .format(i[2],i[17] )) 
+                players.append(str(i[2]))
+    print("")    
     return players 
 
    
@@ -99,8 +104,8 @@ def q_5():
                 
     ten_old = sorted(count_days , reverse=True)
     print("Os 10 mais velhos tem esses dias: ")
-    for i in range(0,10):
-        print("{} : {} dias. " .format(i, ten_old[i]))
+    #for i in range(0,10):
+        #print("{} : {} dias. " .format(i, ten_old[i]))
     
     del(ten_old[10:len(ten_old)])    
     
@@ -109,7 +114,7 @@ def q_5():
         if days(i[8]) in ten_old:
            print("O {} é um dos mais velhos da lista com {} dias. " .format(i[2], days(i[8]))) 
            players.append(str(i[2]))
-        
+    print("")    
     return players
 
 # **Q6.** Conte quantos jogadores existem por idade. Para isso, construa um dicionário onde as chaves são as idades e os valores a contagem.
@@ -126,9 +131,20 @@ def q_6():
     dictionary_ages = {}    
     print
     for i in range(int(minAge), int(maxAge)+1):
-        
-        dictionary_ages[i] = count_ages.count(str(i))
+        if count_ages.count(str(i)) !=0:
+            dictionary_ages[i] = count_ages.count(str(i))
     
     print(dictionary_ages)
         
     return dictionary_ages
+
+
+
+if __name__ == '__main__':
+    
+    q_1()
+    q_2()
+    q_3()
+    q_4()
+    q_5()
+    q_6()
